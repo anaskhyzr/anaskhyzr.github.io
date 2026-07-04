@@ -1,861 +1,349 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Anas Khyzr — Software Developer & Visual Director. Building systems and silent films from Rawalpindi, Pakistan."/>
-<meta property="og:title" content="Anas Khyzr"/>
-<meta property="og:description" content="Software Developer & Visual Director — VISIARCH"/>
-<meta property="og:url" content="https://anaskhyzr.github.io"/>
-<title>Anas Khyzr</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet"/>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: #0b0b0b;
-  --surface: #111;
-  --surface2: #161616;
-  --border: #1e1e1e;
-  --gold: #c8a96e;
-  --gold-dim: #7a6238;
-  --gold-glow: rgba(200,169,110,0.08);
-  --white: #ede9e0;
-  --muted: #5a5650;
-  --muted2: #3a3830;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--white);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-  line-height: 1.75;
-  overflow-x: hidden;
-}
-
-/* ── NAV ── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 48px;
-  background: rgba(11,11,11,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-logo {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 36px;
-  list-style: none;
-}
-
-.nav-links a {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--gold); }
-
-.nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  flex-direction: column;
-  gap: 5px;
-  padding: 4px;
-}
-.nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 1px;
-  background: var(--muted);
-  transition: background 0.2s;
-}
-.nav-toggle:hover span { background: var(--gold); }
-
-/* ── HERO ── */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 48px 80px;
-  max-width: 960px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.hero-eyebrow {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.28em;
-  color: var(--gold-dim);
-  text-transform: uppercase;
-  margin-bottom: 28px;
-  opacity: 0;
-  animation: fadeUp 0.8s ease 0.1s forwards;
-}
-
-.hero-name {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(42px, 8vw, 88px);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  line-height: 1.0;
-  color: var(--white);
-  opacity: 0;
-  animation: fadeUp 0.9s ease 0.25s forwards;
-}
-
-.hero-name em {
-  font-style: normal;
-  color: var(--gold);
-}
-
-.hero-divider {
-  width: 48px;
-  height: 1px;
-  background: var(--gold-dim);
-  margin: 32px 0;
-  opacity: 0;
-  animation: fadeUp 0.8s ease 0.4s forwards;
-}
-
-.hero-tagline {
-  font-size: clamp(18px, 2.5vw, 24px);
-  font-weight: 300;
-  color: var(--muted);
-  max-width: 520px;
-  font-style: italic;
-  opacity: 0;
-  animation: fadeUp 0.8s ease 0.55s forwards;
-}
-
-.hero-tagline strong {
-  color: var(--white);
-  font-style: normal;
-  font-weight: 400;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 16px;
-  margin-top: 48px;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.8s ease 0.7s forwards;
-}
-
-.btn-primary {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--bg);
-  background: var(--gold);
-  border: none;
-  padding: 14px 28px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.btn-primary:hover { opacity: 0.85; }
-
-.btn-secondary {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: transparent;
-  border: 1px solid var(--gold-dim);
-  padding: 14px 28px;
-  text-decoration: none;
-  transition: border-color 0.2s, color 0.2s;
-}
-.btn-secondary:hover { border-color: var(--gold); }
-
-.hero-scroll {
-  position: absolute;
-  bottom: 40px;
-  left: 48px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 8.5px;
-  letter-spacing: 0.22em;
-  color: var(--muted2);
-  text-transform: uppercase;
-  opacity: 0;
-  animation: fadeUp 0.8s ease 1s forwards;
-}
-
-/* ── SECTIONS ── */
-section {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 100px 48px;
-  border-top: 1px solid var(--border);
-}
-
-.section-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.28em;
-  color: var(--gold-dim);
-  text-transform: uppercase;
-  margin-bottom: 48px;
-}
-
-.section-heading {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(24px, 4vw, 38px);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--white);
-  margin-bottom: 24px;
-  line-height: 1.2;
-}
-
-/* ── ABOUT ── */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-
-.about-text p {
-  color: var(--white);
-  font-size: 17px;
-  margin-bottom: 18px;
-  opacity: 0.88;
-}
-
-.about-text p:last-child { margin-bottom: 0; }
-
-.about-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.stat-item {
-  border-left: 1px solid var(--gold-dim);
-  padding-left: 20px;
-}
-
-.stat-number {
-  font-family: 'Cinzel', serif;
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--gold);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-
-/* ── DUAL TRACK ── */
-.dual-track {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  margin-top: 0;
-}
-
-.track {
-  background: var(--surface);
-  padding: 40px 36px;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.3s;
-}
-.track:hover { background: var(--surface2); }
-
-.track::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--gold-dim);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-.track:hover::before { transform: scaleX(1); }
-
-.track-icon {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  color: var(--gold-dim);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.track-title {
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 14px;
-  letter-spacing: 0.04em;
-}
-
-.track-desc {
-  font-size: 15.5px;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 24px;
-}
-
-.track-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tag {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  padding: 4px 10px;
-  transition: border-color 0.2s, color 0.2s;
-}
-.track:hover .tag { border-color: var(--muted2); color: var(--white); }
-
-/* ── WORK ── */
-.work-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-
-.work-card {
-  background: var(--surface);
-  padding: 32px 28px;
-  position: relative;
-  transition: background 0.2s;
-  text-decoration: none;
-  display: block;
-}
-.work-card:hover { background: var(--surface2); }
-
-.work-card-type {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 8.5px;
-  letter-spacing: 0.2em;
-  color: var(--gold-dim);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.work-card-title {
-  font-family: 'Cinzel', serif;
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--white);
-  letter-spacing: 0.04em;
-  margin-bottom: 10px;
-  line-height: 1.3;
-}
-
-.work-card-desc {
-  font-size: 14.5px;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-.work-card-arrow {
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: var(--gold-dim);
-  opacity: 0;
-  transition: opacity 0.2s, transform 0.2s;
-}
-.work-card:hover .work-card-arrow { opacity: 1; transform: translate(3px, -3px); }
-
-/* ── EXPERIENCE ── */
-.exp-list { display: flex; flex-direction: column; gap: 0; }
-
-.exp-item {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 32px;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: start;
-}
-.exp-item:first-child { border-top: 1px solid var(--border); }
-
-.exp-date {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  padding-top: 4px;
-  line-height: 1.6;
-}
-
-.exp-role {
-  font-family: 'Cinzel', serif;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--white);
-  margin-bottom: 3px;
-}
-
-.exp-company {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  color: var(--gold-dim);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.exp-desc {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-/* ── LINKS ── */
-.links-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-}
-
-.link-card {
-  background: var(--surface);
-  padding: 28px 24px;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: background 0.2s;
-  border: 1px solid transparent;
-}
-.link-card:hover { background: var(--surface2); border-color: var(--gold-dim); }
-
-.link-card-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 8.5px;
-  letter-spacing: 0.2em;
-  color: var(--gold-dim);
-  text-transform: uppercase;
-}
-
-.link-card-name {
-  font-family: 'Cinzel', serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--white);
-  letter-spacing: 0.04em;
-}
-
-.link-card-sub {
-  font-size: 13px;
-  color: var(--muted);
-  font-style: italic;
-}
-
-/* ── CONTACT ── */
-#contact {
-  text-align: center;
-}
-
-.contact-inner {
-  max-width: 560px;
-  margin: 0 auto;
-}
-
-.contact-line {
-  font-size: 19px;
-  color: var(--muted);
-  font-style: italic;
-  margin-bottom: 36px;
-}
-
-.contact-email {
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  color: var(--gold);
-  text-decoration: none;
-  letter-spacing: 0.08em;
-  display: block;
-  margin-bottom: 40px;
-  transition: opacity 0.2s;
-}
-.contact-email:hover { opacity: 0.7; }
-
-/* ── FOOTER ── */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 28px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.footer-logo {
-  font-family: 'Cinzel', serif;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  color: var(--gold-dim);
-}
-
-.footer-copy {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  color: var(--muted2);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  nav { padding: 18px 24px; }
-  .nav-links { display: none; flex-direction: column; gap: 20px; position: absolute; top: 60px; left: 0; right: 0; background: rgba(11,11,11,0.98); padding: 28px 24px; border-bottom: 1px solid var(--border); }
-  .nav-links.open { display: flex; }
-  .nav-toggle { display: flex; }
-
-  #hero { padding: 100px 24px 60px; }
-  .hero-scroll { left: 24px; }
-  section { padding: 72px 24px; }
-  footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
-
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  .dual-track { grid-template-columns: 1fr; }
-  .work-grid { grid-template-columns: 1fr; }
-  .links-grid { grid-template-columns: 1fr 1fr; }
-  .exp-item { grid-template-columns: 1fr; gap: 8px; }
-
-  .hero-cta { flex-direction: column; }
-  .btn-primary, .btn-secondary { text-align: center; }
-}
-
-@media (max-width: 480px) {
-  .links-grid { grid-template-columns: 1fr; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anas Khyzr - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">ANAS KHYZR</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#links">Links</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- HERO -->
-<div id="hero">
-  <p class="hero-eyebrow">Rawalpindi, Pakistan · Open to Work</p>
-  <h1 class="hero-name">Anas<br/><em>Khyzr</em></h1>
-  <div class="hero-divider"></div>
-  <p class="hero-tagline">
-    <strong>Software Developer</strong> and <strong>Visual Director</strong> —<br/>
-    building systems by day, silent films by night.
-  </p>
-  <div class="hero-cta">
-    <a href="#work" class="btn-primary">View Work</a>
-    <a href="#contact" class="btn-secondary">Get in Touch</a>
-  </div>
-  <span class="hero-scroll">Scroll to explore</span>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <p class="section-label">About</p>
-  <div class="about-grid reveal">
-    <div class="about-text">
-      <p>I operate at the intersection of two things most people treat as opposites — software engineering and cinematic storytelling.</p>
-      <p>On the technical side: cross-platform apps, full-stack systems, clean backend logic. On the creative side: silent films, vertical series, and visual content where composition does what dialogue cannot.</p>
-      <p>My filmmaking brand is <strong>VISIARCH</strong> — Vision as Architecture. Silence as Language. Every frame is designed to carry meaning without narration.</p>
-      <p>Currently pursuing BS Computer Science at NUML, Rawalpindi (graduating 2027).</p>
-    </div>
-    <div class="about-stats">
-      <div class="stat-item">
-        <div class="stat-number">6+</div>
-        <div class="stat-label">Years Filmmaking</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">150+</div>
-        <div class="stat-label">Reels Produced</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">2</div>
-        <div class="stat-label">Original Film Works</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">5+</div>
-        <div class="stat-label">Professional Roles</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DUAL TRACK -->
-<section id="tracks" style="padding-top:0; border-top: none;">
-  <div class="dual-track reveal">
-    <div class="track">
-      <div class="track-icon">— Code</div>
-      <div class="track-title">Software Developer</div>
-      <p class="track-desc">Full-stack systems, cross-platform apps, and backend architecture. Comfortable across the stack and fluent in multiple languages.</p>
-      <div class="track-tags">
-        <span class="tag">MERN Stack</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">.NET MAUI</span>
-        <span class="tag">Flutter</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">Python</span>
-        <span class="tag">C#</span>
-        <span class="tag">Java</span>
-      </div>
-    </div>
-    <div class="track">
-      <div class="track-icon">— Film</div>
-      <div class="track-title">Visual Director</div>
-      <p class="track-desc">Silent storytelling, symbolic composition, psychological framing. Emotion through color and pacing — not dialogue.</p>
-      <div class="track-tags">
-        <span class="tag">Film Direction</span>
-        <span class="tag">Cinematography</span>
-        <span class="tag">Premiere Pro</span>
-        <span class="tag">DaVinci Resolve</span>
-        <span class="tag">Visual Direction</span>
-        <span class="tag">Lightroom</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK -->
-<section id="work">
-  <p class="section-label">Selected Work</p>
-  <h2 class="section-heading reveal">What I've built<br/>and directed.</h2>
-  <div class="work-grid reveal">
-
-    <a href="https://youtu.be/UePMuBKKVzTs?si=sLSUNQr8y0vtwx4f" target="_blank" rel="noopener" class="work-card">
-      <div class="work-card-type">Short Film · 2024</div>
-      <div class="work-card-title">The Verdict</div>
-      <p class="work-card-desc">A morally charged short film exploring guilt, confession, and the weight of judgment. Silent-first visual language.</p>
-      <span class="work-card-arrow">↗</span>
-    </a>
-
-    <a href="#" class="work-card">
-      <div class="work-card-type">Vertical Web Series · Urdu</div>
-      <div class="work-card-title">Self Talk</div>
-      <p class="work-card-desc">4-episode Urdu-language series. One actor, two internal voices — Sethi and Ali — performed as a psychological split.</p>
-      <span class="work-card-arrow">↗</span>
-    </a>
-
-    <a href="https://github.com/anaskhyzr" target="_blank" rel="noopener" class="work-card">
-      <div class="work-card-type">Development · Open Source</div>
-      <div class="work-card-title">Code Portfolio</div>
-      <p class="work-card-desc">Cross-platform apps, backend systems, and experiments — built with .NET MAUI, Flutter, Node.js, and the MERN stack.</p>
-      <span class="work-card-arrow">↗</span>
-    </a>
-
-    <a href="https://anaskhyzr-tree.carrd.co/" target="_blank" rel="noopener" class="work-card">
-      <div class="work-card-type">Editing · Brand Content</div>
-      <div class="work-card-title">Video Editing Portfolio</div>
-      <p class="work-card-desc">150+ reels, brand campaigns, and motion-typography edits — produced for PTV Digital, SLAesthetics, and independent clients.</p>
-      <span class="work-card-arrow">↗</span>
-    </a>
-
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <p class="section-label">Experience</p>
-  <h2 class="section-heading reveal">Where I've worked.</h2>
-  <div class="exp-list reveal">
-
-    <div class="exp-item">
-      <div class="exp-date">JAN 2019<br/>PRESENT</div>
-      <div>
-        <div class="exp-role">Independent Filmmaker & Visual Director</div>
-        <div class="exp-company">VISIARCH · Self-directed</div>
-        <p class="exp-desc">Founded VISIARCH — a filmmaking brand built on visual language over dialogue. Directed The Verdict and Self Talk. Philosophy: silence as the primary storytelling tool.</p>
-      </div>
+  <!-- ============ HOME ============ -->
+  <section class="page active" id="home">
+    <div class="topbar">
+      <div class="logo logo-font">ANAS KHYZR</div>
+      <nav>
+        <a onclick="showPage('home')">Home</a><span class="sep">|</span>
+        <a onclick="showPage('work')">Work</a><span class="sep">|</span>
+        <a onclick="showPage('about')">About</a><span class="sep">|</span>
+        <a onclick="showPage('contact')">Contact</a><span class="sep">|</span>
+        <a onclick="showPage('extra')">Studio</a>
+      </nav>
     </div>
 
-    <div class="exp-item">
-      <div class="exp-date">AUG 2025<br/>PRESENT</div>
-      <div>
-        <div class="exp-role">Freelance Video Creator</div>
-        <div class="exp-company">SLAesthetics · Islamabad</div>
-        <p class="exp-desc">Full creative pipeline — concept, script, edit, delivery — for 10+ brand awareness videos. Typography-forward editing to drive digital visibility.</p>
+    <div class="grid">
+      <div class="box intro d0">
+        <div class="box-content">
+          <p class="home-intro-text">I'm a
+            <em>polymath</em>, blending <em>visual arts</em> and
+            <em>digital sciences</em> to craft concepts that are impossible to ignore.
+          </p>
+        </div>
+      </div>
+      <div class="box-content placeholder-img featured-photo large">
+        <img src="place-img/IMG_1.jpeg" object-fit="cover" width="350px" alt="Profile Photo">
+
+      </div>
+
+      <div class="box workexp d2"><a onclick="showPage('work')">
+        <div class="box-content">
+          <h3>Work Experience</h3>
+          <ul class="wlist">
+            <li><span>PIXSOLS Media</span><span class="dash"></span><span>Nov 25 - Feb 26</span></li>
+            <li><span>SI Aesthetics clinic</span><span class="dash"></span><span>Sep 25 - Oct 25</span></li>
+            <li><span>PTV Digital HQ</span><span class="dash"></span><span>Jul 25 - Oct 25</span></li>
+            <li><span>Inotech MCS</span><span class="dash"></span><span>Aug 24 - Dec 24</span></li>
+            <li><span>Independent Filmaker</span><span class="dash"></span><span>Oct 19 - Present</span></li>
+          </ul>
+        </div></a>
+      </div>
+
+      <div class="box bio d3"><a onclick="showPage('about')">
+        <div class="box-content">
+          <p>Innovative and multidisciplinary professional with experience in software development, filmmaking, and
+            visual arts.
+            Combines technical expertise with storytelling and human-centered design, offering a unique perspective
+            across creative and analytical domains.</p>
+        </div></a>
+      </div>
+
+      <div class="box questions d4">
+        <a onclick="showPage('contact')">
+        <div class="box-content">
+          <div class="q-top">Have some questions?</div>
+          <div class="contact-me">Contact me</div>
+        </div></a>
+      </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="page" id="about">
+    <div class="topbar">
+      <div class="logo logo-font">ABOUT ME</div>
+      <nav>
+        <a onclick="showPage('home')">Home</a><span class="sep">|</span>
+        <a onclick="showPage('work')">Work</a><span class="sep">|</span>
+        <a onclick="showPage('about')">About</a><span class="sep">|</span>
+        <a onclick="showPage('contact')">Contact</a><span class="sep">|</span>
+        <a onclick="showPage('extra')">Studio</a>
+      </nav>
+    </div>
+
+    <div class="box content d0">
+      <div class="box-content flex-row-center-gap">
+        <div class="left">
+          <h2>Who am i?</h2>
+          <p>I'm Anas Khyzr a curious creator who blends art, storytelling, and technology to bring ideas to life.
+            I enjoy making films, designing meaningful visuals, writing code, and exploring psychology, philosophy, and
+            faith
+            to better understand people and the world around us. I'm always learning, questioning, and refining my
+            craft,
+            driven by the belief that the best ideas are both beautiful and purposeful. Whatever I create, I want it to
+            leave
+            a lasting impression on the eyes, the mind, and the heart.</p>
+          <div class="quote">
+            "hominem te esse memento"<br>
+            ~ remember! you are just a man
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="right">
+          <div class="box-content placeholder-img featured-photo small">
+            <img src="place-img/IMG_2.jpeg" object-fit="cover" width="350px" alt="Profile Photo">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="page" id="work">
+    <div class="topbar">
+      <div class="logo logo-font">WORK EXPERINCE</div>
+      <nav>
+        <a onclick="showPage('home')">Home</a><span class="sep">|</span>
+        <a onclick="showPage('work')">Work</a><span class="sep">|</span>
+        <a onclick="showPage('about')">About</a><span class="sep">|</span>
+        <a onclick="showPage('contact')">Contact</a><span class="sep">|</span>
+        <a onclick="showPage('extra')">Studio</a>
+      </nav>
+    </div>
+
+    <div class="section-title">Filmmaking</div>
+    <div class="filmgrid">
+      <div class="jobcol">
+        <div class="box job d0">
+          <div class="box-content display-contents">
+            <div>
+              <h4>Junior Video Editor</h4>
+              <div class="role-meta"><span>Nov 25 - Feb 26</span><span class="text-right">PIXSOLS Media<br>Rawal
+                  Road, RWP</span></div>
+              <ul>
+                <li>Edited and enhanced 50+ videos monthly using Adobe Premiere Pro.</li>
+                <li>Collaborated with creative teams to deliver impactful visual storytelling.</li>
+              </ul>
+            </div>
+            <div class="iconrow" style="align-items: center; text-align: center;">
+              <div class="icons-h">
+                <div class="placeholder-icon"><a href="https://www.youtube.com/@TheNewCitizens/videos"><img class="icon-img" src="icon-img/icon (1).png"></a>
+                </div>
+                <div class="placeholder-icon"><a href="https://www.youtube.com/@TheBillionaireProfiles/videos"><img class="icon-img" src="icon-img/icon (2).png"></a>
+                </div>
+                <div class="placeholder-icon"><a href="https://www.youtube.com/@TheBillionaireChronicles/videos"><img class="icon-img" src="icon-img/icon (3).png"></a>
+                </div>
+                <div class="placeholder-icon"><a href="https://www.youtube.com/@Therichprofile/videos"><img class="icon-img" src="icon-img/icon (4).png"></a>
+                </div>
+                <div class="placeholder-icon"><a href="https://www.youtube.com/@BillionaireInsights360"><img class="icon-img" src="icon-img/icon (5).png"></a>
+                </div>
+              </div>
+              <div class="caption">Clipping and Editing long format faceless YouTube videos, click icons to check out.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box job d1">
+          <div class="box-content display-contents">
+            <div>
+              <h4>Freelance Video Creator</h4>
+              <div class="role-meta"><span>Sep 25 - Oct 25</span><span class="text-right">SI Aesthetics
+                  clinic<br>F7 markaz, ISB</span></div>
+              <ul>
+                <li>Scripted, produced, and delivered 10+ short-form videos for brand awareness.</li>
+                <li>Implemented innovative editing techniques to elevate brand visibility.</li>
+              </ul>
+            </div>
+            <div class="iconrow">
+              <div style="align-items: center; text-align: center;"><a href="https://drive.google.com/drive/folders/1ALwv8LiHZqyPw1_a6AhNYkR-mD2mTL01"><img class="icon-img" src="icon-img/driveIcon.png"></a></div>
+              <div class="caption">End-to-end production of short format videos, around branch lunch promotion, click
+                icon to check out.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box job d2">
+          <div class="box-content display-contents">
+            <div>
+              <h4>Intern Social Media Creator</h4>
+              <div class="role-meta"><span>Sep 25 - Oct 25</span><span class="text-right">PTV Digital
+                  HQ<br>ISB</span></div>
+              <ul>
+                <li>Scripted, produced, and delivered 10+ short-form videos for brand awareness.</li>
+                <li>Implemented innovative editing techniques to elevate brand visibility.</li>
+              </ul>
+            </div>
+            <div class="iconrow">
+              <div style="align-items: center; text-align: center;"><a href="https://drive.google.com/drive/folders/1YlP74roJDZu_4E5StiFnFATL-w0ChnxH"><img class="icon-img" src="icon-img/driveIcon.png"></a></div>
+              <div class="caption">End-to-end production of short format videos, around social media presence, click
+                icon to check out.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rightcol">
+        <div class="box indie d3">
+          <div class="box-content">
+            <h4>Independent Filmaker</h4>
+            <div class="since">since Oct 19 - Present</div>
+            <ul>
+              <li>Directed and produced multiple short films and a vertical web series.</li>
+              <li>Notable works: The Verdict (short film), Self Talk (vertical web series).</li>
+              <li>Directed short films for FYP's.</li>
+              <li>Scripted short form content for creators: Hussain Vlogwala, Haroonie &amp; Jugnoometics.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="exp-item">
-      <div class="exp-date">NOV 2025<br/>FEB 2026</div>
-      <div>
-        <div class="exp-role">Junior Video Editor</div>
-        <div class="exp-company">Pixsol Media · Rawalpindi</div>
-        <p class="exp-desc">Edited and refined 50+ videos monthly. Long-format clipping, color grading, and pacing — collaborative creative workflow.</p>
+    <div class="section-title">Codding</div>
+    <div class="box coding-job d0">
+      <div class="box-content display-contents">
+        <div>
+          <h4>Intern Junior Developer</h4>
+          <div class="role-meta">Aug 24 - Dec 24 &nbsp;&nbsp; INOtech SWD, MCS, RWP</div>
+          <ul>
+            <li>Developed cross-platform apps using .NET MAUI and Flutter.</li>
+            <li>Worked on backend systems with Node.js and Express.</li>
+            <li>Assisted in UI/UX optimization and debugging.</li>
+          </ul>
+        </div>
+        <div class="gh">
+          <div style="align-items: center; text-align: center;"><a href="https://github.com/anaskhyzr/"><img class="icon-img" src="icon-img/gitIco.png"></a></div>
+          <div class="caption">All of my code is available on GitHub, click icon to check out.</div>
+        </div>
       </div>
     </div>
 
-    <div class="exp-item">
-      <div class="exp-date">JUL 2025<br/>SEP 2025</div>
-      <div>
-        <div class="exp-role">Intern — Social Media Creator</div>
-        <div class="exp-company">PTV Digital · Islamabad</div>
-        <p class="exp-desc">Produced 150+ short-form reels with motion typography for Pakistan's national broadcaster. End-to-end: ideation → script → edit.</p>
+    <div class="skillsgrid">
+      <div class="box d1">
+        <div class="box-content">
+          <h4>Key Skills Programming</h4>
+          <ul>
+            <li>MERN - Stack</li>
+            <li>HTML, CSS, JS, Node.js, Next.js, SQL, PostgresSQL, C, C++, C#, .NET MAUI, Assembly, Flutter.</li>
+            <li>UI/UX Designer (intermediate)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="box d2">
+        <div class="box-content">
+          <ul>
+            <li>Student management system (basic CRUD app).</li>
+            <li>Wealth warden (expense tracking app).</li>
+            <li>UI/UX designs for photography portfolio.</li>
+            <li>CineTracker (ongoing project).</li>
+          </ul>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="exp-item">
-      <div class="exp-date">AUG 2024<br/>DEC 2024</div>
-      <div>
-        <div class="exp-role">Intern — Junior Developer</div>
-        <div class="exp-company">InoTech Solutions · Rawalpindi</div>
-        <p class="exp-desc">Built cross-platform mobile apps (.NET MAUI, Flutter), backend systems (Node.js, Express), and contributed to UI/UX refinement across live projects.</p>
+  <!-- ============ CONTACT ============ -->
+  <section class="page" id="contact">
+    <div class="topbar">
+      <div class="logo logo-font">CONTACT ME</div>
+      <nav>
+        <a onclick="showPage('home')">Home</a><span class="sep">|</span>
+        <a onclick="showPage('work')">Work</a><span class="sep">|</span>
+        <a onclick="showPage('about')">About</a><span class="sep">|</span>
+        <a onclick="showPage('contact')">Contact</a><span class="sep">|</span>
+        <a onclick="showPage('extra')">Studio</a>
+      </nav>
+    </div>
+
+    <div class="box content d0">
+      <div class="box-content flex-row-full">
+        <div class="colL">
+          <p>Filmmaking, coding, writing, poetry, philosophy, psychology, neurology, quantum science, meta physics
+            <br>Yeah! that's me.</p>
+        </div>
+        <div class="divider"></div>
+        <div class="colR">
+          <p class="mail">Email me:<br>anaskhyzr4@gmail.com</p>
+          <div class="divider-h"></div>
+          <p>Connect with me on Instagram:<br>@theanaskhyzrfilms</p>
+          <div class="icons" style="align-items: center; text-align: center;">
+            <div><a href="https://www.instagram.com/theanaskhyzrfilms/"><img class="icon-img" src="icon-img/instagram-logo-vector-illustration_1300495-24.png"></a></div>
+            <div><a href="mailto:anaskhyzr4@gmail.com" target="_blank"><img src="icon-img/gmail-circle-icon.png" alt="Gmail" width="40"></a></div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- LINKS -->
-<section id="links">
-  <p class="section-label">Find Me</p>
-  <h2 class="section-heading reveal">Across the web.</h2>
-  <div class="links-grid reveal">
-    <a href="https://www.linkedin.com/in/anas-khyzr-ab6119258/" target="_blank" rel="noopener" class="link-card">
-      <span class="link-card-label">Professional</span>
-      <span class="link-card-name">LinkedIn</span>
-      <span class="link-card-sub">Work history & connects</span>
-    </a>
-    <a href="https://github.com/anaskhyzr" target="_blank" rel="noopener" class="link-card">
-      <span class="link-card-label">Code</span>
-      <span class="link-card-name">GitHub</span>
-      <span class="link-card-sub">Projects & repositories</span>
-    </a>
-    <a href="https://www.instagram.com/theanaskhyzrfilms/" target="_blank" rel="noopener" class="link-card">
-      <span class="link-card-label">Film & Visual</span>
-      <span class="link-card-name">Instagram</span>
-      <span class="link-card-sub">@theanaskhyzrfilms</span>
-    </a>
-    <a href="https://www.pexels.com/@anas-khyzr-550486698/" target="_blank" rel="noopener" class="link-card">
-      <span class="link-card-label">Photography</span>
-      <span class="link-card-name">Pexels</span>
-      <span class="link-card-sub">Photo portfolio</span>
-    </a>
-    <a href="https://anaskhyzr-tree.carrd.co/" target="_blank" rel="noopener" class="link-card">
-      <span class="link-card-label">Editing</span>
-      <span class="link-card-name">Video Portfolio</span>
-      <span class="link-card-sub">Brand & reel work</span>
-    </a>
-    <a href="mailto:anaskhyzr4@gmail.com" class="link-card">
-      <span class="link-card-label">Direct</span>
-      <span class="link-card-name">Email</span>
-      <span class="link-card-sub">anaskhyzr4@gmail.com</span>
-    </a>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <p class="section-label">Contact</p>
-  <div class="contact-inner reveal">
-    <h2 class="section-heading">Let's work together.</h2>
-    <p class="contact-line">Dev project, film collaboration, or freelance work — reach out directly.</p>
-    <a href="mailto:anaskhyzr4@gmail.com" class="contact-email">anaskhyzr4@gmail.com</a>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="https://www.linkedin.com/in/anas-khyzr-ab6119258/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn</a>
-      <a href="https://github.com/anaskhyzr" target="_blank" rel="noopener" class="btn-secondary">GitHub</a>
+  <!-- ============ EXTRA / VISIARCH ============ -->
+  <section class="page" id="extra">
+    <div class="topbar">
+      <div class="logo logo-font">EXTRA</div>
+      <nav>
+        <a onclick="showPage('home')">Home</a><span class="sep">|</span>
+        <a onclick="showPage('work')">Work</a><span class="sep">|</span>
+        <a onclick="showPage('about')">About</a><span class="sep">|</span>
+        <a onclick="showPage('contact')">Contact</a><span class="sep">|</span>
+        <a onclick="showPage('extra')">Studio</a>
+      </nav>
     </div>
-  </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <span class="footer-logo">VISIARCH</span>
-  <span class="footer-copy">© 2026 Anas Khyzr · Rawalpindi, Pakistan</span>
-</footer>
+    <div class="box content d0">
+      <div class="box-content flex-row-full-gap">
+        <div class="left">
+          <h2>VISIARCH</h2>
+          <div class="tagline">a solo visual studio built on one premise:<br>what is withheld carries more weight than
+            what is shown.</div>
+          <p>Every frame is composed, not filled. Every story is built like architecture deliberate, load-bearing,
+            with nothing
+            left to chance. The work leans toward the psychological: dark-toned, narrative-driven, more interested in
+            what a
+            character doesn't say than what they do.<br><br>
+            This is a studio that chooses its projects. Every one is treated as a story never as content.</p>
+        </div>
+        <div class="divider"></div><a href="https://www.instagram.com/visi_arch/" target="_blank">
+        <div class="right">
+          <div><img src="place-img/IMG_3.png" object-fit="cover" width="300px" alt="Studio Image"></div>
+        </div>
+      </div></a>
+    </div>
+  </section>
 
-<script>
-  // Mobile nav toggle
-  const toggle = document.getElementById('navToggle');
-  const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-</script>
-
+  <script>
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(id);
+      target.classList.add('active');
+      restartAnimations(target);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+    function restartAnimations(page) {
+      const els = page.querySelectorAll('.box, .box-content');
+      els.forEach(el => {
+        el.style.animation = 'none';
+        void el.offsetHeight;
+        el.style.animation = '';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      restartAnimations(document.getElementById('home'));
+    });
+  </script>
 </body>
+
 </html>
